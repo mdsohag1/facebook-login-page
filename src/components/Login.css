@@ -1,0 +1,91 @@
+.maiDiv {
+   display: flex;
+   padding: 150px 0;
+   background-color: #f0f2f5;
+   justify-content: space-around;
+   align-items: center;
+}
+.left {
+   width: 500px;
+   display: flex;
+   flex-direction: column;
+   margin-top: -70px;
+}
+.right {
+   width: 500px;
+}
+
+.left > img {
+   width: 300px;
+}
+.left > h4 {
+   margin-left: 30px;
+   font-weight: 400;
+}
+.formbox {
+   width: 400px;
+   background-color: #fff;
+   padding: 20px;
+   box-shadow: 5px 10px 20px rgb(190, 189, 189);
+   border-radius: 10px;
+   margin: 0 auto;
+}
+.formbox > input {
+   width: 100%;
+   margin: 20px 0;
+   padding: 10px;
+}
+
+.loginBtn {
+   width: 100%;
+   font-weight: bold;
+   font-size: 20px;
+}
+.createBtn {
+   background-color: #42b72a;
+   color: #fff;
+   border-radius: 10px;
+   width: 220px;
+   height: 48px;
+   font-weight: bold;
+   font-size: 18px;
+   border: none;
+   outline: none;
+   display: flex;
+   flex-direction: column;
+   align-self: center;
+   margin: 0 auto;
+   justify-content: center;
+   align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+   .maiDiv {
+      padding: 100px 0;
+      background-color: #f0f2f5;
+      flex-direction: column;
+   }
+   .left {
+      width: 100%;
+   }
+   .left > img {
+      width: 180px;
+      margin: 0 auto;
+   }
+   .left > h4 {
+      display: none;
+   }
+   .formbox {
+      width: 100%;
+      padding: 40px;
+      box-shadow: 5px 10px 20px rgb(190, 189, 189);
+      border-radius: 10px;
+      /* margin: 0 10px; */
+   }
+   .right {
+      width: 100%;
+   }
+   .right > p {
+      width: 100%;
+   }
+}

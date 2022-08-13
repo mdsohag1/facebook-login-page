@@ -1,0 +1,40 @@
+.footer {
+   background-color: #fff;
+   width: 100%;
+   padding: 30px 20%;
+   color: rgb(129, 129, 129);
+}
+.mobile {
+   display: none;
+}
+.about {
+   display: none;
+}
+
+@media screen and (max-width: 480px) {
+   .footer {
+      width: 100%;
+      display: flex;
+      padding: 10px 10px;
+   }
+   .footer > .foo {
+      display: none;
+   }
+   .mobile {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+   }
+   .mobile > .one {
+      display: flex;
+      flex-direction: column;
+   }
+   .mobile > .two {
+      display: flex;
+      flex-direction: column;
+   }
+   .about {
+      display: block;
+   }
+}
