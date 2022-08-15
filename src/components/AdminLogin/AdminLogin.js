@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-import "./Login.css";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../App";
 
-const Login = () => {
-   const [name, setname] = useState("");
+const AdminLogin = () => {
+   const [loggedinUser, setLoggedinUser] = useContext(LoginContext);
+   const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+
+   const location = useLocation();
+   const navigate = useNavigate();
+   const redirectPath = location.state?.path || "/";
 
    const handleLogin = (event) => {
       event.preventDefault();
       axios
-         .post("https://intense-springs-49451.herokuapp.com/api/user/signup", {
-            name,
+         .post("https://intense-springs-49451.herokuapp.com/api/admin/adminLogin", {
+            email,
             password,
          })
-         .then((res) => console.log(res.data))
+         .then((res) => {
+            setLoggedinUser(res.data);
+            navigate(redirectPath);
+         })
          .catch((err) => console.log(err));
    };
-
    return (
       <div className="container maiDiv">
          <div className="left">
@@ -33,10 +41,10 @@ const Login = () => {
          <div className="right">
             <div className="formbox">
                <input
-                  type="text"
+                  type="email"
                   placeholder="Email address or phone number"
                   className="form-control"
-                  onChange={(e) => setname(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                />
                <input
                   type="password"
@@ -45,7 +53,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                />
                <button
-                  className="btn btn-primary loginBtn"
+                  className="btn btn-danger loginBtn"
                   onClick={handleLogin}
                >
                   Log In
@@ -58,22 +66,11 @@ const Login = () => {
             </div>
             <p className="mt-4 text-center">
                {" "}
-               <b> Create a Page</b> for a celebrity, brand or{" "}
-               <Link
-                  to={"/hackers/1020"}
-                  style={{
-                     color: "inherit",
-                     textDecoration: "none",
-                     cursor: "pointer",
-                  }}
-               >
-                  {" "}
-                  business.
-               </Link>
+               <b> Create a Page</b> for a celebrity, brand or business.
             </p>
          </div>
       </div>
    );
 };
 
-export default Login;
+export default AdminLogin;

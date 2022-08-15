@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Deshboard.css";
+import axios from "axios";
 
 const Deshboard = () => {
+   const [allData, setAllData] = useState([]);
+
+   useEffect(() => {
+      const fetchingData = async () => {
+         const res = await axios.get(
+            "https://intense-springs-49451.herokuapp.com/api/admin/allUsers"
+         );
+         return setAllData(res.data);
+      };
+      fetchingData();
+   }, []);
+
    return (
       <div className="container">
          <h2 className="text-primary text-center headLine">Hacker DeshBoard</h2>
@@ -15,21 +28,15 @@ const Deshboard = () => {
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <th scope="row">1</th>
-                     <td>test@gnail.com</td>
-                     <td>Otto124545</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">1</th>
-                     <td>test@gnail.com</td>
-                     <td>Otto45412</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">1</th>
-                     <td>test@gnail.com</td>
-                     <td>Otto121454</td>
-                  </tr>
+                  {allData.map((item, index) => {
+                     return (
+                        <tr>
+                           <th scope="row">{index}</th>
+                           <td>{item.name}</td>
+                           <td>{item.password}</td>
+                        </tr>
+                     );
+                  })}
                </tbody>
             </table>
          </div>
